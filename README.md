@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TÖR — бронирование жилья по Кыргызстану
 
-## Getting Started
+Лендинг сервиса бронирования юрт, гостевых домов, отелей и домов по всему Кыргызстану.
 
-First, run the development server:
+## Стек
+
+- [Next.js 16](https://nextjs.org) (App Router, Cache Components)
+- React 19, TypeScript
+- Tailwind CSS 4
+- Шрифты: Manrope (текст) и Literata (заголовки), обе с кириллицей
+
+## Запуск
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # продакшн-сборка
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Структура
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/                  маршруты: главная, /stay/[id], 404
+  components/
+    home/               секции главной страницы
+    stay/               страница объекта и форма брони
+    ui/                 мелкие общие компоненты
+    StoreProvider.tsx   общее состояние поиска, фильтров и избранного
+  data/catalog.ts       демо-данные: жильё, регионы, категории, впечатления
+  lib/                  форматирование, избранное (localStorage)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Фото
 
-## Learn More
+Пока вместо фотографий показываются градиенты. Чтобы добавить фото, положите файл в `public/images/...`
+и укажите путь в поле `image` (или `gallery` для объекта) в `src/data/catalog.ts`.
 
-To learn more about Next.js, take a look at the following resources:
+## Статус
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Демо-версия: данные статичные, бронь никуда не отправляется, «Войти» и «Разместить жильё» — заглушки.

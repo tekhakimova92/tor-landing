@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-cream: #f7f2e7;
+  --color-sand: #eadfc8;
+  --color-sand-deep: #efe7d3;
+  --color-line: #d8cdb2;
+  --color-sage: #a9bba0;
+  --color-forest: #1f3a2e;
+  --color-moss: #4a6355;
+  --color-teal: #0f5c66;
+  --color-gold: #e9b949;
+  --color-gold-light: #f3cb6a;
+  --color-rose: #c8553d;
+  --color-danger: #9a3b2a;
+
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-serif: var(--font-literata), Georgia, serif;
+
+  --breakpoint-md: 760px;
+  --breakpoint-lg: 1000px;
+  --breakpoint-xl: 1100px;
+
+  --ease-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    margin: 0;
+    background: var(--color-cream);
+    color: var(--color-forest);
+  }
+
+  a {
+    color: var(--color-teal);
+  }
+
+  a:hover {
+    color: var(--color-forest);
+  }
+
+  input,
+  select,
+  button {
+    font-family: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility kicker {
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+@utility field-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+}
+
+@utility section {
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: 18px;
+  scroll-margin-top: 80px;
+  @variant md {
+    padding-inline: 28px;
+  }
+  @variant lg {
+    padding-inline: 48px;
+  }
 }
