@@ -2,6 +2,8 @@
 
 Лендинг сервиса бронирования юрт, гостевых домов, отелей и домов по всему Кыргызстану.
 
+Сайт: https://tor-landing.vercel.app — обновляется автоматически при каждом пуше в `main` (Vercel).
+
 ## Стек
 
 - [Next.js 16](https://nextjs.org) (App Router, Cache Components)
