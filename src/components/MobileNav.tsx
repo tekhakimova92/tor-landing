@@ -1,28 +1,33 @@
 "use client";
 
+import { Heart, Search, Sparkles, Tent } from "lucide-react";
 import { useNavActions } from "./useNavActions";
 
 export function MobileNav() {
   const nav = useNavActions();
   const tabs = [
-    { label: "Поиск", go: nav.home, on: nav.isHome && !nav.onlyFav },
-    { label: "Юрты", go: nav.yurts, on: false },
-    { label: "Избранное", go: nav.favorites, on: nav.onlyFav },
-    { label: "Впечатления", go: nav.experiences, on: false },
+    { label: "Поиск", icon: Search, go: nav.home, on: nav.isHome && !nav.onlyFav },
+    { label: "Юрты", icon: Tent, go: nav.yurts, on: false },
+    { label: "Избранное", icon: Heart, go: nav.favorites, on: nav.onlyFav, badge: nav.favCount },
+    { label: "Впечатления", icon: Sparkles, go: nav.experiences, on: false },
   ];
 
   return (
-    <nav className="fixed right-3 bottom-[max(12px,env(safe-area-inset-bottom))] left-3 z-40 grid grid-cols-4 rounded-[26px] bg-cream/92 p-2 shadow-[0_10px_36px_rgba(31,58,46,.25)] backdrop-blur-lg md:hidden">
+    <nav className="glass fixed right-3 bottom-[max(12px,env(safe-area-inset-bottom))] left-3 z-40 grid grid-cols-4 gap-1 rounded-full p-1.5 md:hidden">
       {tabs.map((t) => (
         <button
           key={t.label}
           type="button"
           onClick={t.go}
-          className={`flex min-h-12 cursor-pointer items-center justify-center rounded-[20px] text-[13px] font-bold ${
+          className={`relative flex h-14 cursor-pointer flex-col items-center justify-center gap-0.5 rounded-full text-[11px] font-bold transition-colors ${
             t.on ? "bg-forest text-cream" : "text-forest"
           }`}
         >
+          <t.icon size={19} strokeWidth={1.9} />
           {t.label}
+          {!!t.badge && (
+            <span className="absolute top-1.5 right-[calc(50%-20px)] grid min-w-4 place-items-center rounded-full bg-rose px-1 text-[9px] leading-4 text-white">{t.badge}</span>
+          )}
         </button>
       ))}
     </nav>

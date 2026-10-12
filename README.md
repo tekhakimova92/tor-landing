@@ -9,7 +9,8 @@
 - [Next.js 16](https://nextjs.org) (App Router, Cache Components)
 - React 19, TypeScript
 - Tailwind CSS 4
-- Шрифты: Manrope (текст) и Literata (заголовки), обе с кириллицей
+- Шрифты: Manrope (текст) и Jost (заголовки), обе с кириллицей
+- Иконки: [lucide-react](https://lucide.dev)
 
 ## Запуск
 
@@ -26,7 +27,7 @@ npm run lint
 src/
   app/                  маршруты: главная, /stay/[id], 404
   components/
-    home/               секции главной страницы
+    home/               секции главной страницы (Hero, Stays, Regions, ...)
     stay/               страница объекта и форма брони
     ui/                 мелкие общие компоненты
     StoreProvider.tsx   общее состояние поиска, фильтров и избранного
@@ -36,8 +37,9 @@ src/
 
 ## Фото
 
-Пока вместо фотографий показываются градиенты. Чтобы добавить фото, положите файл в `public/images/...`
-и укажите путь в поле `image` (или `gallery` для объекта) в `src/data/catalog.ts`.
+Фото лежат в `public/images` (с [Unsplash](https://unsplash.com/license), авторы перечислены в `public/images/CREDITS.md`).
+Это временные иллюстрации: чтобы поставить реальные фото объекта, замените файл с тем же именем
+или поменяйте путь в `src/data/catalog.ts`. Если файла нет, на его месте показывается градиент.
 
 ## Статус
 

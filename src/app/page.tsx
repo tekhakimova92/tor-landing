@@ -1,5 +1,4 @@
 import { Hero } from "@/components/home/Hero";
-import { Categories } from "@/components/home/Categories";
 import { Stays } from "@/components/home/Stays";
 import { Regions } from "@/components/home/Regions";
 import { YurtBanner } from "@/components/home/YurtBanner";
@@ -10,7 +9,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Categories />
       <Stays />
       <Regions />
       <YurtBanner />

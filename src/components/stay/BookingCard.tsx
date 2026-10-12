@@ -9,7 +9,7 @@ import { GuestsStepper } from "@/components/ui/GuestsStepper";
 
 const primary =
   "box-border w-full cursor-pointer rounded-full bg-forest p-4 text-center font-bold text-cream hover:bg-teal disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-forest";
-const input = "box-border w-full rounded-2xl border border-sage bg-cream px-4 py-3.5 text-[15px] outline-none focus:border-teal";
+const input = "box-border w-full rounded-2xl border border-line bg-cream px-4 py-3.5 text-[15px] outline-none focus:border-teal";
 
 export function BookingCard({ stay }: { stay: Stay }) {
   const { from, to, guests, update } = useStore();
@@ -30,15 +30,15 @@ export function BookingCard({ stay }: { stay: Stay }) {
   const canConfirm = name.trim().length > 0 && phone.replace(/\D/g, "").length >= 6;
 
   return (
-    <aside className="top-24 rounded-[30px] border border-sand bg-white p-[26px] shadow-[0_18px_50px_rgba(31,58,46,.16)] lg:sticky">
+    <aside className="rounded-card border border-line bg-white p-6 shadow-soft">
       {step === 0 && (
         <>
           <div className="text-[15px]">
-            <b className="font-serif text-[32px] font-medium">{fmt(stay.price)} сом</b> <span className="text-moss">за ночь</span>
+            <b className="font-display text-[34px] font-medium tracking-[-.02em]">{fmt(stay.price)} сом</b> <span className="text-moss">за ночь</span>
           </div>
-          <div className="mt-[18px] grid grid-cols-2 overflow-hidden rounded-[18px] border border-sage">
-            <label className="flex flex-col gap-0.5 border-r border-sage px-3.5 py-2.5">
-              <span className="field-label text-[10px]">Заезд</span>
+          <div className="mt-[18px] grid grid-cols-2 overflow-hidden rounded-[22px] border border-line bg-cream/60">
+            <label className="flex flex-col gap-0.5 border-r border-line px-3.5 py-2.5">
+              <span className="text-[11px] font-semibold text-moss">Заезд</span>
               <input
                 type="date"
                 value={from}
@@ -48,7 +48,7 @@ export function BookingCard({ stay }: { stay: Stay }) {
               />
             </label>
             <label className="flex flex-col gap-0.5 px-3.5 py-2.5">
-              <span className="field-label text-[10px]">Выезд</span>
+              <span className="text-[11px] font-semibold text-moss">Выезд</span>
               <input
                 type="date"
                 value={to}
@@ -57,7 +57,7 @@ export function BookingCard({ stay }: { stay: Stay }) {
                 className="min-w-0 border-0 bg-transparent text-sm font-semibold text-forest outline-none"
               />
             </label>
-            <div className="col-span-2 flex items-center justify-between border-t border-sage px-3.5 py-2.5">
+            <div className="col-span-2 flex items-center justify-between border-t border-line px-3.5 py-2.5">
               <span className="text-sm font-semibold">Гости: {guests}</span>
               <GuestsStepper size={28} />
             </div>
@@ -96,7 +96,7 @@ export function BookingCard({ stay }: { stay: Stay }) {
           }}
         >
           <div className="text-xs font-bold tracking-[.14em] text-teal uppercase">Шаг 2 из 3</div>
-          <div className="mt-1.5 mb-4 font-serif text-[28px]">Ваши данные</div>
+          <div className="mt-1.5 mb-4 font-display text-[28px] font-medium">Ваши данные</div>
           <div className="mb-4 text-sm text-moss">
             {fmtDate(from)} — {fmtDate(to)} · {guests} {plural(guests, "гость", "гостя", "гостей")} · {fmt(total)} сом
           </div>
@@ -122,7 +122,7 @@ export function BookingCard({ stay }: { stay: Stay }) {
       {step === 2 && (
         <div className="py-3 text-center">
           <div className="mx-auto mb-4 grid size-16 place-items-center rounded-full bg-teal text-[30px] text-cream">✓</div>
-          <div className="font-serif text-[30px] leading-[1.1]">Вас ждут, {name.trim()}</div>
+          <div className="font-display text-[30px] leading-[1.1] font-medium">Вас ждут, {name.trim()}</div>
           <p className="mt-3 mb-5 text-[15px] leading-relaxed text-moss">
             Бронь «{stay.name}» на {nights} {plural(nights, "ночь", "ночи", "ночей")} отправлена хозяину. Он свяжется с вами по номеру {phone}.
           </p>

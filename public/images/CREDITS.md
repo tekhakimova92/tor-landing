@@ -1,0 +1,57 @@
+# Фото
+
+Все фото — с [Unsplash](https://unsplash.com) по [лицензии Unsplash](https://unsplash.com/license) (бесплатно, в том числе для коммерческого использования).
+
+- hero — Oziel Gómez (https://unsplash.com/@ozgomz), https://unsplash.com/photos/qLchd-tax_g
+- yurt-banner — Thomas Evans (https://unsplash.com/@thoeva), https://unsplash.com/photos/CjvZYvH6f4M
+- hosts — Spenser Sembrat (https://unsplash.com/@spensersembrat), https://unsplash.com/photos/_0VGZdu-3EI
+- stay-1 — Lightscape (https://unsplash.com/@lightscape), https://unsplash.com/photos/cjNQ6q9ernw
+- stay-2, cat-house — Mike Petrucci (https://unsplash.com/@mikepetrucci), https://unsplash.com/photos/18joWFjUhKw
+- stay-3, cat-guest — Ruben Hanssen (https://unsplash.com/@rhfhanssen), https://unsplash.com/photos/ZI9zYWhLyy0
+- stay-4 — Luca Bravo (https://unsplash.com/@lucabravo), https://unsplash.com/photos/hFzIoD0F_i8
+- stay-5 — Ariungoo Batzorig (https://unsplash.com/@ariungoo), https://unsplash.com/photos/bj0sxWYiGXg
+- stay-6, cat-hotel — Point3D Commercial Imaging Ltd. (https://unsplash.com/@3dottawa), https://unsplash.com/photos/oxeCZrodz78
+- stay-7 — Daniel J. Schwarz (https://unsplash.com/@danieljschwarz), https://unsplash.com/photos/BNX4W2GDjxI
+- stay-8, g-attic — Clay Banks (https://unsplash.com/@claybanks), https://unsplash.com/photos/rP0OTFdVaak
+- stay-9 — Audrius Sutkus (https://unsplash.com/@audrius4x), https://unsplash.com/photos/N2KIkLWuwvQ
+- stay-10 — alb jon (https://unsplash.com/@albingordon), https://unsplash.com/photos/3XxOEpojRXY
+- g-yurt-stars, exp-stars — Yoav Aziz (https://unsplash.com/@yoavaziz), https://unsplash.com/photos/dVZlpVo63rM
+- g-tea, exp-food — Joel Heard (https://unsplash.com/@kazheard), https://unsplash.com/photos/XJ3x31jMJBU
+- g-yurts-river, cat-yurt — Ariungoo Batzorig (https://unsplash.com/@ariungoo), https://unsplash.com/photos/uxf4TpVyoVg
+- g-yurt-hill — T Y (https://unsplash.com/@tyr123), https://unsplash.com/photos/2KLc5O-D1OE
+- g-cabin-fire — Clay Banks (https://unsplash.com/@claybanks), https://unsplash.com/photos/f_6yPIgDxxs
+- g-cabin-living — Clay Banks (https://unsplash.com/@claybanks), https://unsplash.com/photos/D-IPwXyS9J4
+- g-river — Sergei Sviridov (https://unsplash.com/@vinchesko), https://unsplash.com/photos/K9zPm_ca7Bw
+- g-bedroom-wood — Simona Sergi (https://unsplash.com/@i_am_simoesse), https://unsplash.com/photos/_dbGjx7OkDQ
+- g-valley — Above Horizon (https://unsplash.com/@abovehorizon), https://unsplash.com/photos/wvc9E16vIYY
+- g-sunroom — Andrea Davis (https://unsplash.com/@andreaedavis), https://unsplash.com/photos/IWfe63thJxk
+- g-kitchen — Hans (https://unsplash.com/@hansphoto), https://unsplash.com/photos/bQTVoJHrkO0
+- g-bedroom-bright — Clay Banks (https://unsplash.com/@claybanks), https://unsplash.com/photos/SpDKzy83DmY
+- g-lake, cat-issyk — Igor Tverdovskiy (https://unsplash.com/@tvigor), https://unsplash.com/photos/hqPtnORm9gU
+- g-hotel-warm — Vojtech Bruzek (https://unsplash.com/@vojtechbruzek), https://unsplash.com/photos/Yrxr3bsPdS0
+- g-hotel-dark — Lisha Riabinina (https://unsplash.com/@weekendtripcreator), https://unsplash.com/photos/qifUgNsrWmU
+- g-hotel-white — Dave Photoz (https://unsplash.com/@mirapolis), https://unsplash.com/photos/6MYm-cUJRB0
+- g-city — Mike Dudin (https://unsplash.com/@mikedudin), https://unsplash.com/photos/X0Et9fwIUbw
+- g-forest-house — Josh Hild (https://unsplash.com/@joshhild), https://unsplash.com/photos/6kVGxIHriTA
+- g-bedroom-cozy — Annie Spratt (https://unsplash.com/@anniespratt), https://unsplash.com/photos/t9PIuFmVqaY
+- g-meadow, reg-jalal — Irina Shishkina (https://unsplash.com/@whoisrobinhood), https://unsplash.com/photos/gWXuVSOLuG0
+- g-vintage — Clay Banks (https://unsplash.com/@claybanks), https://unsplash.com/photos/Fr62lAJFnII
+- g-snow-room — Nachelle Nocom (https://unsplash.com/@nachellenocom), https://unsplash.com/photos/51adhgg5KkE
+- g-mountain-house — Adam Wilson (https://unsplash.com/@fourcolourblack), https://unsplash.com/photos/qD6gGM5PUrk
+- g-canyon — Anastasiia Mitiushova (https://unsplash.com/@mitiushova), https://unsplash.com/photos/4mOJmABQmGs
+- reg-issyk — Mike Dudin (https://unsplash.com/@mikedudin), https://unsplash.com/photos/2QOzZDO_1oo
+- reg-naryn — Azamat E (https://unsplash.com/@esen_aza), https://unsplash.com/photos/F8RPA3u1_n8
+- reg-osh — Dastan Suiuntbekov (https://unsplash.com/@dastans), https://unsplash.com/photos/zEA5f3zSR4c
+- reg-chui — ra5tel by (https://unsplash.com/@ra5tel), https://unsplash.com/photos/OmaZg0Purig
+- reg-talas, cat-all — Vladimir Ivanov (https://unsplash.com/@astat), https://unsplash.com/photos/8TUCgXlrVmY
+- reg-batken — Galen Crout (https://unsplash.com/@galen_crout), https://unsplash.com/photos/8T8ZrMPjDEA
+- cat-mountain — Aleksei Zhivilov (https://unsplash.com/@bb009x), https://unsplash.com/photos/prsw1XmBuos
+- cat-nature — Alexey Barbanakov (https://unsplash.com/@alexxey_b), https://unsplash.com/photos/2uA3P4hwLaw
+- cat-unique — Karsten Winegeart (https://unsplash.com/@_karsten), https://unsplash.com/photos/NVhD7aGh9gQ
+- exp-horse — Mikhail Blinov (https://unsplash.com/@mishablinovv), https://unsplash.com/photos/g8HpuoWYJpw
+- exp-hike — Sergei Karakulov (https://unsplash.com/@serjika), https://unsplash.com/photos/kYSIz0aKOIw
+- exp-eagle — Alfred Kenneally (https://unsplash.com/@alken), https://unsplash.com/photos/UsgLeLorRuM
+- exp-felt — Chris Barbalis (https://unsplash.com/@cbarbalis), https://unsplash.com/photos/Gf47cZJxrSw
+- exp-springs — Virginia Marinova (https://unsplash.com/@virginiaphotostories), https://unsplash.com/photos/9nTQGA2RPQo
+- exp-canyon — Anastasiia Mitiushova (https://unsplash.com/@mitiushova), https://unsplash.com/photos/wfPSInxQ35Q
+- exp-lakes — sayan Nath (https://unsplash.com/@hiresayan), https://unsplash.com/photos/9cour2VEtdk

@@ -1,5 +1,5 @@
 // Демо-данные лендинга. Когда появится бэкенд, этот файл заменится запросами к API.
-// Поле `image` — путь к фото в /public (например, "/images/stays/1.jpg"); пока фото нет, показывается градиент.
+// Фото лежат в /public/images (авторы — в public/images/CREDITS.md). Если фото нет, показывается градиент `bg`.
 
 export type StayType = "yurt" | "guest" | "hotel" | "house" | "unique";
 export type StayTag = "lake" | "mountain" | "nature";
@@ -205,7 +205,27 @@ const rawStays: Omit<Stay, "bg">[] = [
   },
 ];
 
-export const STAYS: Stay[] = rawStays.map((s, i) => ({ ...s, bg: stayBgs[i % stayBgs.length] }));
+const galleries: Record<number, string[]> = {
+  1: ["g-yurt-stars", "g-tea", "g-yurts-river", "g-yurt-hill"],
+  2: ["g-cabin-fire", "g-cabin-living", "g-river", "g-bedroom-wood"],
+  3: ["g-attic", "g-tea", "g-valley", "g-bedroom-wood"],
+  4: ["g-sunroom", "g-kitchen", "g-bedroom-bright", "g-lake"],
+  5: ["g-yurt-stars", "g-yurts-river", "g-tea", "g-yurt-hill"],
+  6: ["g-hotel-warm", "g-hotel-dark", "g-hotel-white", "g-city"],
+  7: ["g-forest-house", "g-bedroom-cozy", "g-meadow", "g-snow-room"],
+  8: ["g-vintage", "g-tea", "g-bedroom-cozy", "g-hotel-warm"],
+  9: ["g-yurt-hill", "g-yurt-stars", "g-tea", "g-meadow"],
+  10: ["g-cabin-living", "g-bedroom-bright", "g-mountain-house", "g-canyon"],
+};
+
+const img = (name: string) => `/images/${name}.jpg`;
+
+export const STAYS: Stay[] = rawStays.map((s, i) => ({
+  ...s,
+  bg: stayBgs[i % stayBgs.length],
+  image: img(`stay-${s.id}`),
+  gallery: (galleries[s.id] ?? []).map(img),
+}));
 
 export const getStay = (id: number) => STAYS.find((s) => s.id === id);
 
@@ -221,6 +241,8 @@ const regionBgs = [
 
 export type Region = { name: string; text: string; bg: string; image?: string };
 
+const regionSlugs = ["issyk", "naryn", "osh", "jalal", "chui", "talas", "batken"];
+
 export const REGIONS: Region[] = [
   ["Иссык-Куль", "Горы встречаются с бескрайним голубым озером."],
   ["Нарын", "Высокие горы, чистый воздух и настоящее чувство свободы."],
@@ -229,11 +251,11 @@ export const REGIONS: Region[] = [
   ["Чуй", "Зелёная долина у подножия Ала-Тоо, рядом со столицей."],
   ["Талас", "Тихий край эпоса о Манасе и мягких холмов."],
   ["Баткен", "Абрикосовые сады и скалистые ущелья на границе гор."],
-].map(([name, text], i) => ({ name, text, bg: regionBgs[i] }));
+].map(([name, text], i) => ({ name, text, bg: regionBgs[i], image: img(`reg-${regionSlugs[i]}`) }));
 
 export type CategoryId = "all" | "mountain" | "yurt" | "issyk" | "nature" | "guest" | "hotel" | "house" | "unique";
 
-export const CATEGORIES: { id: CategoryId; label: string; bg: string; image?: string }[] = [
+const rawCategories: { id: CategoryId; label: string; bg: string }[] = [
   { id: "all", label: "Всё", bg: "#A9BBA0" },
   { id: "mountain", label: "Горы", bg: "#BFD9E8" },
   { id: "yurt", label: "Юрты", bg: "#E8C27A" },
@@ -245,6 +267,8 @@ export const CATEGORIES: { id: CategoryId; label: string; bg: string; image?: st
   { id: "unique", label: "Уникальное жильё", bg: "#D9B8A0" },
 ];
 
+export const CATEGORIES = rawCategories.map((c) => ({ ...c, image: img(`cat-${c.id}`) }));
+
 export const TYPE_FILTERS: { id: StayType | "all"; label: string }[] = [
   { id: "all", label: "Любой" },
   { id: "yurt", label: "Юрта" },
@@ -254,22 +278,19 @@ export const TYPE_FILTERS: { id: StayType | "all"; label: string }[] = [
   { id: "unique", label: "Уникальное" },
 ];
 
-export const EXPERIENCES = [
-  ["Катание на лошадях", 2500],
-  ["Походы в горы", 3000],
-  ["Национальная кухня", 1800],
-  ["Охота с беркутом", 4500],
-  ["Мастер-классы", 1500],
-  ["Горячие источники", 1200],
-  ["Прогулки по ущельям", 2000],
-  ["Ночёвка в юрте", 5200],
-  ["Поездки к озёрам", 2800],
-].map(([name, price], i) => ({
-  name: name as string,
-  price: price as number,
-  bg: regionBgs[i % regionBgs.length],
-  image: undefined as string | undefined,
-}));
+export const EXPERIENCES = (
+  [
+    ["Катание на лошадях", 2500, "horse"],
+    ["Походы в горы", 3000, "hike"],
+    ["Национальная кухня", 1800, "food"],
+    ["Охота с беркутом", 4500, "eagle"],
+    ["Мастер-классы", 1500, "felt"],
+    ["Горячие источники", 1200, "springs"],
+    ["Прогулки по ущельям", 2000, "canyon"],
+    ["Ночёвка в юрте", 5200, "stars"],
+    ["Поездки к озёрам", 2800, "lakes"],
+  ] as const
+).map(([name, price, slug], i) => ({ name, price, bg: regionBgs[i % regionBgs.length], image: img(`exp-${slug}`) }));
 
 export const HOSPITALITY_VALUES = [
   "Настоящие хозяева",

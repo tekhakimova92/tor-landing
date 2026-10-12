@@ -16,9 +16,9 @@ export function FavButton({ id, className = "" }: { id: number; className?: stri
         e.stopPropagation();
         toggleFav(id);
       }}
-      className={`grid size-10 cursor-pointer place-items-center rounded-full bg-cream/85 backdrop-blur-md transition-transform duration-200 hover:scale-110 ${className}`}
+      className={`grid size-10 cursor-pointer place-items-center rounded-full transition-transform duration-200 hover:scale-110 ${className}`}
     >
-      <HeartIcon filled={fav} />
+      <HeartIcon filled={fav} size={19} />
     </button>
   );
 }
