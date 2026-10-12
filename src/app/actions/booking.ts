@@ -16,15 +16,8 @@ export type BookingResult = { ok: true } | { ok: false; error: string };
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
-// Заявка уходит в Telegram. Цену пересчитываем по каталогу, а не берём из браузера.
+// Заявка сохраняется в Supabase и уходит в Telegram. Цену пересчитываем по каталогу, а не берём из браузера.
 export async function sendBooking(req: BookingRequest): Promise<BookingResult> {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) {
-    console.error("sendBooking: TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID не заданы");
-    return { ok: false, error: "Заявки временно не принимаются. Попробуйте позже." };
-  }
-
   const stay = getStay(Number(req.stayId));
   const name = String(req.name ?? "").trim().slice(0, 80);
   const phone = String(req.phone ?? "").trim().slice(0, 30);
@@ -49,6 +42,59 @@ export async function sendBooking(req: BookingRequest): Promise<BookingResult> {
     `Телефон: ${phone}`,
   ].join("\n");
 
+  const [saved, notified] = await Promise.all([
+    saveBooking({
+      stay_id: stay.id,
+      stay_name: stay.name,
+      check_in: req.from,
+      check_out: req.to,
+      nights,
+      guests,
+      total,
+      name,
+      phone,
+    }),
+    notifyTelegram(text),
+  ]);
+
+  // Заявка принята, если её получил хотя бы один канал.
+  if (!saved && !notified) {
+    return { ok: false, error: "Не удалось отправить заявку. Попробуйте ещё раз." };
+  }
+  return { ok: true };
+}
+
+async function saveBooking(row: Record<string, string | number>): Promise<boolean> {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SECRET_KEY;
+  if (!url || !key) {
+    console.error("saveBooking: SUPABASE_URL или SUPABASE_SECRET_KEY не заданы");
+    return false;
+  }
+  try {
+    const res = await fetch(`${url}/rest/v1/bookings`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: key, Authorization: `Bearer ${key}`, Prefer: "return=minimal" },
+      body: JSON.stringify(row),
+    });
+    if (!res.ok) {
+      console.error("saveBooking: Supabase ответил", res.status, await res.text());
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error("saveBooking:", e);
+    return false;
+  }
+}
+
+async function notifyTelegram(text: string): Promise<boolean> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) {
+    console.error("notifyTelegram: TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID не заданы");
+    return false;
+  }
   try {
     const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
@@ -56,13 +102,12 @@ export async function sendBooking(req: BookingRequest): Promise<BookingResult> {
       body: JSON.stringify({ chat_id: chatId, text }),
     });
     if (!res.ok) {
-      console.error("sendBooking: Telegram ответил", res.status, await res.text());
-      return { ok: false, error: "Не удалось отправить заявку. Попробуйте ещё раз." };
+      console.error("notifyTelegram: Telegram ответил", res.status, await res.text());
+      return false;
     }
+    return true;
   } catch (e) {
-    console.error("sendBooking:", e);
-    return { ok: false, error: "Не удалось отправить заявку. Попробуйте ещё раз." };
+    console.error("notifyTelegram:", e);
+    return false;
   }
-
-  return { ok: true };
 }
