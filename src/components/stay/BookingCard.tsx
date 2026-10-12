@@ -1,11 +1,12 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { SERVICE_FEE, type Stay } from "@/data/catalog";
 import { fmt, fmtDate, nightsBetween, plural } from "@/lib/format";
 import { useStore } from "@/components/StoreProvider";
 import { GuestsStepper } from "@/components/ui/GuestsStepper";
+import { sendBooking } from "@/app/actions/booking";
 
 const primary =
   "box-border w-full cursor-pointer rounded-full bg-forest p-4 text-center font-bold text-cream hover:bg-teal disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-forest";
@@ -17,6 +18,8 @@ export function BookingCard({ stay }: { stay: Stay }) {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [error, setError] = useState("");
+  const [sending, startSending] = useTransition();
 
   // Страница остаётся в памяти после ухода (Activity), поэтому при скрытии возвращаемся к первому шагу.
   useLayoutEffect(() => () => setStep(0), []);
@@ -92,7 +95,13 @@ export function BookingCard({ stay }: { stay: Stay }) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (canConfirm) setStep(2);
+            if (!canConfirm || sending) return;
+            setError("");
+            startSending(async () => {
+              const res = await sendBooking({ stayId: stay.id, from, to, guests, name, phone });
+              if (res.ok) setStep(2);
+              else setError(res.error);
+            });
           }}
         >
           <div className="text-xs font-bold tracking-[.14em] text-teal uppercase">Шаг 2 из 3</div>
@@ -110,8 +119,13 @@ export function BookingCard({ stay }: { stay: Stay }) {
             autoComplete="tel"
             className={input}
           />
-          <button type="submit" disabled={!canConfirm} className={`${primary} mt-[18px]`}>
-            Подтвердить бронь
+          {error && (
+            <div role="alert" className="mt-3 text-[13px] text-danger">
+              {error}
+            </div>
+          )}
+          <button type="submit" disabled={!canConfirm || sending} className={`${primary} mt-[18px]`}>
+            {sending ? "Отправляем…" : "Подтвердить бронь"}
           </button>
           <button type="button" onClick={() => setStep(0)} className="mx-auto mt-3 block cursor-pointer text-sm font-semibold text-teal">
             Назад
@@ -124,7 +138,7 @@ export function BookingCard({ stay }: { stay: Stay }) {
           <div className="mx-auto mb-4 grid size-16 place-items-center rounded-full bg-teal text-[30px] text-cream">✓</div>
           <div className="font-display text-[30px] leading-[1.1] font-medium">Вас ждут, {name.trim()}</div>
           <p className="mt-3 mb-5 text-[15px] leading-relaxed text-moss">
-            Бронь «{stay.name}» на {nights} {plural(nights, "ночь", "ночи", "ночей")} отправлена хозяину. Он свяжется с вами по номеру {phone}.
+            Заявка на «{stay.name}» на {nights} {plural(nights, "ночь", "ночи", "ночей")} отправлена. Мы свяжемся с вами по номеру {phone}.
           </p>
           <button
             type="button"
